@@ -83,3 +83,23 @@ modelo.compile(loss='categorical_crossentropy', optimizer=adam, metrics=['accura
 
 #Checkpointer para guardar el mejor modelo
 checkpointer = callbacks.ModelCheckpoint('lenguajeSenas.keras', monitor = 'val_accuracy', save_best_only = True, mode = 'max')
+                                         
+                                         # Entrenamiento del modelo
+M = modelo.fit(X_train, y_train, validation_data=(X_val, y_val), epochs=90, batch_size=100,
+               callbacks=[checkpointer], verbose=True)
+
+# Evaluación del modelo
+plt.plot(M.history['accuracy'], label = 'train')
+plt.plot(M.history['val_accuracy'], label = 'val')
+plt.legend(loc = 'best')
+plt.xlabel('Época')
+plt.ylabel('Accuracy')
+plt.show()
+
+# Evaluación del modelo
+plt.plot(M.history['loss'], label = 'train')
+plt.plot(M.history['val_loss'], label = 'val')
+plt.legend(loc = 'best')
+plt.xlabel('Época')
+plt.ylabel('Loss')
+plt.show()
