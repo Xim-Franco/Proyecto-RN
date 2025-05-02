@@ -46,3 +46,13 @@ print(clases[0], '->', etiquetas[0])
 plt.imshow(imagenes[0].reshape(40, 40), cmap='gray')
 plt.title(f'Clase: {clases[0]}')
 plt.show()
+
+# 80% entrenamiento y 20% prueba
+X_train, X_test, y_train, y_test = train_test_split(imagenes, etiquetas, test_size=0.2, random_state=42)
+
+# 80% entrenamiento y 20% validación
+X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.2, random_state=42)
+
+print("Conjunto de entrenamiento:", X_train.shape)
+print("Conjunto de validación:", X_val.shape)
+print("Conjunto de prueba:", X_test.shape)
