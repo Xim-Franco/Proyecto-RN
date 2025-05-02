@@ -8,3 +8,14 @@ import tensorflow.keras.utils as np_utils
 from tensorflow.keras.utils import to_categorical
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
+
+np.random.seed(100)
+
+from google.colab import drive
+drive.mount('/content/drive')
+
+# Lectura del archivo de imágenes
+dataset = pd.read_csv('/content/drive/MyDrive/SenasDataset.csv', header= None)
+
+# Tamaño de los datos
+dataset.shape
