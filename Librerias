@@ -103,3 +103,17 @@ plt.legend(loc = 'best')
 plt.xlabel('Época')
 plt.ylabel('Loss')
 plt.show()
+
+# Evaluación general del modelo en el conjunto de prueba
+loss, accuracy = modelo.evaluate(X_test, y_test, verbose=0)
+print(f'Loss en prueba: {loss:.4f}')
+print(f'Accuracy en prueba: {accuracy:.4f}')
+
+n_imagen = 50
+prediccion = modelo.predict(X_test[n_imagen].reshape(1,40,40,1))
+
+plt.imshow(X_test[n_imagen].reshape(40,40), cmap='gray')
+plt.show()
+
+print('predicción = ', np.argmax(prediccion))
+print('real =', np.argmax(y_test[n_imagen]))
