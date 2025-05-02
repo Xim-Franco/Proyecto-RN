@@ -19,3 +19,19 @@ dataset = pd.read_csv('/content/drive/MyDrive/SenasDataset.csv', header= None)
 
 # Tamaño de los datos
 dataset.shape
+
+# Cambio del tipo de dato del data set a arreglo de numpy
+dataset = dataset.values
+
+# Separar imágenes y etiquetas
+imagenes = dataset[:, :-1]
+clases = dataset[:, -1] #clases = dataset[:, 1600]
+
+# Verificar las clases antes de codificarlas
+print(np.unique(clases))
+
+# Transformar imágenes a su formato original
+imagenes = imagenes.reshape(12000, 40, 40, 1)
+
+# Normalizar las imágenes
+imagenes = imagenes/255
