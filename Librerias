@@ -56,3 +56,16 @@ X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.
 print("Conjunto de entrenamiento:", X_train.shape)
 print("Conjunto de validación:", X_val.shape)
 print("Conjunto de prueba:", X_test.shape)
+
+backend.clear_session()
+
+# Construcción del modelo
+modelo = Sequential()
+modelo.add(Conv2D(16, kernel_size=(3,3), activation='relu',input_shape = (40, 40, 1)))
+modelo.add(MaxPooling2D(pool_size=(2,2)))
+modelo.add(Conv2D(32, kernel_size=(3,3), activation='relu'))
+modelo.add(MaxPooling2D(pool_size=(2,2)))
+modelo.add(Conv2D(64, kernel_size=(3,3), activation='relu'))
+modelo.add(Conv2D(128, kernel_size=(3,3), activation='relu'))
+modelo.add(Conv2D(256, kernel_size=(3,3), activation='relu'))
+modelo.add(MaxPooling2D(pool_size=(2,2)))
