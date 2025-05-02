@@ -35,3 +35,14 @@ imagenes = imagenes.reshape(12000, 40, 40, 1)
 
 # Normalizar las imágenes
 imagenes = imagenes/255
+
+# Codificación one-hot de las clases
+etiquetas = to_categorical(clases, num_classes=24)
+
+# Mostrar la codificación one-hot
+print(clases[0], '->', etiquetas[0])
+
+# Visualización
+plt.imshow(imagenes[0].reshape(40, 40), cmap='gray')
+plt.title(f'Clase: {clases[0]}')
+plt.show()
