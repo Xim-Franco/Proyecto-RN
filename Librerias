@@ -75,3 +75,11 @@ modelo.add(Dense(50, activation='relu'))
 modelo.add(Dense(30, activation='relu'))
 modelo.add(Dense(24, activation='softmax'))
 modelo.summary()
+
+
+# Optimizador y compilación del modelo
+adam = optimizers.Adam(learning_rate=0.001)
+modelo.compile(loss='categorical_crossentropy', optimizer=adam, metrics=['accuracy'])
+
+#Checkpointer para guardar el mejor modelo
+checkpointer = callbacks.ModelCheckpoint('lenguajeSenas.keras', monitor = 'val_accuracy', save_best_only = True, mode = 'max')
