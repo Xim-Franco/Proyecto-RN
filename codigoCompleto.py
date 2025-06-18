@@ -61,20 +61,26 @@ backend.clear_session()
 
 # Construcción del modelo
 modelo = Sequential()
-modelo.add(Conv2D(16, kernel_size=(3,3), activation='relu',input_shape = (40, 40, 1)))
+modelo.add(Conv2D(16, kernel_size=(3,3), activation='gelu', input_shape=(40, 40, 1)))
 modelo.add(MaxPooling2D(pool_size=(2,2)))
-modelo.add(Conv2D(32, kernel_size=(3,3), activation='relu'))
+
+modelo.add(Conv2D(32, kernel_size=(3,3), activation='gelu'))
 modelo.add(MaxPooling2D(pool_size=(2,2)))
-modelo.add(Conv2D(64, kernel_size=(3,3), activation='relu'))
-modelo.add(Conv2D(128, kernel_size=(3,3), activation='relu'))
-modelo.add(Conv2D(256, kernel_size=(3,3), activation='relu'))
+
+modelo.add(Conv2D(64, kernel_size=(3,3), activation='gelu'))
 modelo.add(MaxPooling2D(pool_size=(2,2)))
+modelo.add(Dropout(0.3))
+
 modelo.add(Flatten())
-modelo.add(Dense(70, activation='relu'))
-modelo.add(Dense(50, activation='relu'))
+
+modelo.add(Dense(50, activation='gelu'))
+modelo.add(Dropout(0.3))
 modelo.add(Dense(30, activation='relu'))
+modelo.add(Dropout(0.2))
 modelo.add(Dense(24, activation='softmax'))
-modelo.summary()
+
+# Early Stopping
+early_stop = EarlyStopping(monitor='val_loss', patience=5, restore_best_weights=True)
 
 
 # Optimizador y compilación del modelo
