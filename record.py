@@ -2,9 +2,6 @@ import cv2
 import time
 import os
 
-# Crear carpeta si se desea guardar en subdirectorio (opcional)
-# os.makedirs('videos', exist_ok=True)
-
 # Parámetros
 nombre_archivo = 'video_128x128_10fps.avi'
 fps_deseado = 10
